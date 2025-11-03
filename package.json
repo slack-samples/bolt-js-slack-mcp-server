@@ -1,28 +1,29 @@
 {
-  "name": "bolt-js-ai-agent-template",
+  "name": "bolt-js-slack-mcp-server",
   "version": "1.0.0",
-  "description": "A template for building AI-enabled Slack apps",
+  "description": "Sample that demonstrates the use of Slack's MCP server",
   "type": "module",
   "main": "app.js",
   "scripts": {
     "check": "npx tsc --checkJs --noEmit --esModuleInterop --target esnext --module nodenext --moduleResolution nodenext app.js",
     "start": "node app.js",
-    "lint": "npx @biomejs/biome check *.js ai/ listeners/",
-    "lint:fix": "npx @biomejs/biome check --write *.js ai/ listeners/"
+    "lint": "npx @biomejs/biome check *.js llm/ listeners/",
+    "lint:fix": "npx @biomejs/biome check --write *.js llm/ listeners/"
   },
   "author": "Slack Technologies, LLC",
   "license": "MIT",
   "keywords": [
     "slack",
     "bolt",
-    "slackapi"
+    "slackapi",
+    "mcp"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/slack-samples/bolt-js-assistant-template.git"
+    "url": "https://github.com/slack-samples/bolt-js-slack-mcp-server.git"
   },
   "bugs": {
-    "url": "https://github.com/slack-samples/bolt-js-assistant-template/issues"
+    "url": "https://github.com/slack-samples/bolt-js-slack-mcp-server/issues"
   },
   "dependencies": {
     "@slack/bolt": "^4.5.0",
