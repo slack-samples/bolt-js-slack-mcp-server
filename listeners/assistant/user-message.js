@@ -113,7 +113,9 @@ export const userMessage = async ({ client, context, logger, message, say, setTi
           type: 'mcp',
           server_label: 'slack',
           server_url: 'https://mcp.slack.com/mcp',
-          authorization: context.userToken,
+          headers: {
+            'Authorization': `Bearer ${context.userToken}`,
+          },
           require_approval: 'never',
         },
       ],
