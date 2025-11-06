@@ -112,7 +112,6 @@ export const userMessage = async ({ client, context, logger, message, say, setTi
         {
           type: 'mcp',
           server_label: 'slack',
-          server_description: 'Slack MCP Server',
           server_url: 'https://mcp.slack.com/mcp',
           authorization: context.userToken,
           require_approval: 'never',
