@@ -3,7 +3,7 @@
 > ⚠️ **Beta Notice**: This template demonstrates MCP functionality that is currently in beta and not yet widely available to all developers. The functionality shown here is being tested and may change before general availability.
 
 
-This Bolt for JavaScript template demonstrates how to build [AI Apps](https://docs.slack.dev/ai/) in Slack that leverage Slack's MCP server.
+This Bolt for JavaScript template demonstrates how to build [AI Apps](https://docs.slack.dev/ai/) in Slack that leverage the Slack MCP server.
 
 Models from [OpenAI](https://openai.com) are used and can be customized for prompts of all kinds.
 
@@ -41,7 +41,7 @@ SLACK_INSTALL_URL='https://<YOUR_APP_URL>/slack/install'
 
 _Note: for more information about the `SLACK_INSTALL_URL`, see the [OAuth](#oauth) section._
 
-3. Save your OpenAI key into `.env` under `OPENAI_API_KEY`.
+3. Unlock the OpenAI models from your OpenAI account dashboard by clicking [create a new secret key](https://platform.openai.com/api-keys), then save your OpenAI key into the `.env` file as `OPENAI_API_KEY` like so:
 ```zsh
 OPENAI_API_KEY=YOUR_OPEN_API_KEY
 ```
@@ -51,7 +51,7 @@ OPENAI_API_KEY=YOUR_OPEN_API_KEY
 
 ```zsh
 # Clone this project onto your machine
-git clone https://github.com/slack-samples/bolt-js-slack-mcp.git
+git clone https://github.com/slack-samples/bolt-js-slack-mcp-server.git
 
 # Change into this project directory
 cd bolt-js-slack-mcp

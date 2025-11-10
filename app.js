@@ -10,12 +10,11 @@ const app = new App({
   signingSecret: process.env.SLACK_SIGNING_SECRET,
   clientId: process.env.SLACK_CLIENT_ID,
   clientSecret: process.env.SLACK_CLIENT_SECRET,
-  stateSecret: 'my-state-secret',
+  stateSecret: process.env.SLACK_STATE_SECRET,
   scopes: [
     'assistant:write',
     'channels:history',
     'chat:write',
-    'channels:history',
     'groups:history',
     'im:history',
     'mpim:history',
