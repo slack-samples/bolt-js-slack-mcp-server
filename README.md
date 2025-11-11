@@ -42,6 +42,7 @@ Before you can run the app, you'll need to store some environment variables.
 SLACK_CLIENT_ID=YOUR_APP_CLIENT_ID
 SLACK_CLIENT_SECRET=YOUR_APP_CLIENT_SECRET
 SLACK_SIGNING_SECRET=YOUR_APP_SIGNING_SECRET
+SLACK_STATE_SECRET='your-state-secret'
 SLACK_INSTALL_URL='https://<APP_INSTALLATION_URL>/slack/install'
 ```
 
