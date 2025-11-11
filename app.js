@@ -11,14 +11,7 @@ const app = new App({
   clientId: process.env.SLACK_CLIENT_ID,
   clientSecret: process.env.SLACK_CLIENT_SECRET,
   stateSecret: process.env.SLACK_STATE_SECRET,
-  scopes: [
-    'assistant:write',
-    'channels:history',
-    'chat:write',
-    'groups:history',
-    'im:history',
-    'mpim:history',
-  ],
+  scopes: ['assistant:write', 'channels:history', 'chat:write', 'groups:history', 'im:history', 'mpim:history'],
   installerOptions: {
     userScopes: ['chat:write', 'canvases:write'],
   },

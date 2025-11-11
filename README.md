@@ -26,6 +26,12 @@ Join the [Slack Developer Program](https://api.slack.com/developer-program) for 
    says `*Paste your manifest code here*` (within the JSON tab) and click _Next_
 4. Review the configuration and click _Create_
 
+### Clone the project
+```zsh
+# Clone this project onto your machine
+git clone https://github.com/slack-samples/bolt-js-slack-mcp-server.git
+```
+
 ### Environment Variables
 
 Before you can run the app, you'll need to store some environment variables.
@@ -36,10 +42,10 @@ Before you can run the app, you'll need to store some environment variables.
 SLACK_CLIENT_ID=YOUR_APP_CLIENT_ID
 SLACK_CLIENT_SECRET=YOUR_APP_CLIENT_SECRET
 SLACK_SIGNING_SECRET=YOUR_APP_SIGNING_SECRET
-SLACK_INSTALL_URL='https://<YOUR_APP_URL>/slack/install'
+SLACK_INSTALL_URL='https://<APP_INSTALLATION_URL>/slack/install'
 ```
 
-_Note: for more information about the `SLACK_INSTALL_URL`, see the [OAuth](#oauth) section._
+_Note: the `SLACK_INSTALL_URL` is where users initiate the installation of the app into their workspace. For more information about this URL, please see the [OAuth](#oauth) section._
 
 3. Unlock the OpenAI models from your OpenAI account dashboard by clicking [create a new secret key](https://platform.openai.com/api-keys), then save your OpenAI key into the `.env` file as `OPENAI_API_KEY` like so:
 ```zsh
@@ -50,11 +56,8 @@ OPENAI_API_KEY=YOUR_OPEN_API_KEY
 ### Local Project
 
 ```zsh
-# Clone this project onto your machine
-git clone https://github.com/slack-samples/bolt-js-slack-mcp-server.git
-
-# Change into this project directory
-cd bolt-js-slack-mcp
+# Change into the project directory
+cd bolt-js-slack-mcp-server
 
 # Install dependencies
 npm install
@@ -70,19 +73,11 @@ npm start
 npm run lint
 ```
 
-## Project Structure
-
-### `manifest.json`
-
-`manifest.json` is a configuration for Slack apps. With a manifest, you can create an app with a pre-defined configuration, or adjust the configuration of an existing app.
-
-### `app.js`
-
-`app.js` is the entry point for the application and is the file you'll run to start the server. This project aims to keep this file as thin as possible, primarily using it as a way to route inbound requests.
-
 ## OAuth
 
 This sample relies on the usage of user tokens, and therefore requires individual user installations to function as intended.
+
+> **Reminder: the Bolt app must be running _and_ the following endpoints made available for the below URLs to be accessible when updating them in the app configuration.**
 
 When using OAuth, Slack requires a public URL where it can send requests. In this template app, we've used [`ngrok`](https://ngrok.com/download). Checkout [this guide](https://ngrok.com/docs#getting-started-expose) for setting it up.
 
@@ -109,3 +104,32 @@ Navigate to **Event Subscriptions** in your app configuration and update the **R
 ```
 https://3cb89939.ngrok.io/slack/events
 ```
+
+This public URL is also where users navigate to in order to install the app into their workspace. Like the **Redirect URL** and **Request URL**, Bolt sets the installation URL to be `slack/install` by default. For example:
+
+```
+https://3cb89939.ngrok.io/slack/install
+```
+
+## Usage
+After installing the app into a workspace using the OAuth installtion flow, create a new chat (via DM) with the chatbot. 
+
+Upon creation of the new chat, the user is prompted with two static options that demonstrate either sending a message to #general, or creating a new canvas – both as and on behalf of the user.
+
+## Project Structure
+
+### `manifest.json`
+
+`manifest.json` is a configuration for Slack apps. With a manifest, you can create an app with a pre-defined configuration, or adjust the configuration of an existing app.
+
+### `app.js`
+
+`app.js` is the entry point for the application and is the file you'll run to start the server. This project aims to keep this file as thin as possible, primarily using it as a way to route inbound requests.
+
+**`/listeners/assistant`**
+
+Configures the new Slack Assistant features, providing a dedicated side panel UI for users to interact with the AI chatbot. This module includes:
+
+- The `assistant-thread-started.js` file, which responds to new app threads with a list of suggested prompts.
+- The `assistant-thread-context-changed.js` file, which updates the context to include information about where the conversation with the chatbot is occurring (i.e., in a DM or within a channel).
+- The `user-message.js` file, which responds to user messages sent to app threads or from the **Chat** and **History** tab with an LLM generated response.

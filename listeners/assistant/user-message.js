@@ -88,7 +88,14 @@ export const userMessage = async ({ client, context, logger, message, say, setTi
       loading_messages: ['Thinking...', 'Processing...', 'Analyzing...', 'Calculating...', 'Working on it...'],
     });
 
-    // Retrieve the Assistant thread history for context of question being asked
+    /**
+     * Retrieve the Assistant thread history for context of question being asked
+     *
+     * Note: This API method is for demonstration purposes only, as it is
+     * subject to rate limiting that is not recommended for production apps.
+     *
+     * @see {@link http://docs.slack.dev/reference/methods/conversations.replies/}
+     */
     const thread = await client.conversations.replies({
       channel,
       ts: thread_ts,
