@@ -105,7 +105,7 @@ Navigate to **Event Subscriptions** in your app configuration and update the **R
 https://3cb89939.ngrok.io/slack/events
 ```
 
-This public URL is also where users navigate to in order to install the app into their workspace. Like the **Redirect URL** and **Request URL**, Bolt sets the installation URL to be `slack/install` by default. For example:
+The value set for the `SLACK_INSTALL_URL` in `.env` corresponds to the public URL where users initiate the installation of the app into their workspace. The install URL should be set to your `ngrok` forwarding address with the `slack/install` path appended. For example:
 
 ```
 https://3cb89939.ngrok.io/slack/install
@@ -126,10 +126,14 @@ Upon creation of the new chat, the user is prompted with two static options that
 
 `app.js` is the entry point for the application and is the file you'll run to start the server. This project aims to keep this file as thin as possible, primarily using it as a way to route inbound requests.
 
-**`/listeners/assistant`**
+### `/listeners/assistant`
 
 Configures the new Slack Assistant features, providing a dedicated side panel UI for users to interact with the AI chatbot. This module includes:
 
 - The `assistant-thread-started.js` file, which responds to new app threads with a list of suggested prompts.
 - The `assistant-thread-context-changed.js` file, which updates the context to include information about where the conversation with the chatbot is occurring (i.e., in a DM or within a channel).
 - The `user-message.js` file, which responds to user messages sent to app threads or from the **Chat** and **History** tab with an LLM generated response.
+
+### `/llm`
+
+The `openai.js` file handles the OpenAI API initialization and configuration.
