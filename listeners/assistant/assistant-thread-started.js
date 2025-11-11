@@ -11,9 +11,7 @@
  *
  * @see {@link https://docs.slack.dev/reference/events/assistant_thread_started}
  */
-export const assistantThreadStarted = async ({ event, logger, say, setSuggestedPrompts, saveThreadContext }) => {
-  const { context } = event.assistant_thread;
-
+export const assistantThreadStarted = async ({ logger, say, setSuggestedPrompts, saveThreadContext }) => {
   try {
     /**
      * Since context is not sent along with individual user messages, it's necessary to keep
@@ -35,38 +33,20 @@ export const assistantThreadStarted = async ({ event, logger, say, setSuggestedP
      *
      * @see {@link https://docs.slack.dev/reference/methods/assistant.threads.setSuggestedPrompts}
      */
-    if (!context.channel_id) {
-      await setSuggestedPrompts({
-        title: 'Start with this suggested prompt:',
-        prompts: [
-          {
-            title: 'This is a suggested prompt',
-            message:
-              'When a user clicks a prompt, the resulting prompt message text ' +
-              'can be passed directly to your LLM for processing.\n\n' +
-              'Assistant, please create some helpful prompts I can provide to ' +
-              'my users.',
-          },
-        ],
-      });
-    }
-
-    /**
-     * If the user opens the Assistant container in a channel, additional
-     * context is available. This can be used to provide conditional prompts
-     * that only make sense to appear in that context.
-     */
-    if (context.channel_id) {
-      await setSuggestedPrompts({
-        title: 'Perform an action based on the channel',
-        prompts: [
-          {
-            title: 'Summarize channel',
-            message: 'Assistant, please summarize the activity in this channel!',
-          },
-        ],
-      });
-    }
+    await setSuggestedPrompts({
+      title: 'See the Slack MCP Server in action:',
+      prompts: [
+        {
+          title: 'Send a message to #general on my behalf',
+          message:
+            'Send a message on my behalf to #general, indicating the demo worked and the possibilities are endless!',
+        },
+        {
+          title: 'Create a canvas for team standup',
+          message: 'Create a general template for a team standup',
+        },
+      ],
+    });
   } catch (e) {
     logger.error(e);
   }

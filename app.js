@@ -1,27 +1,40 @@
+import { App, FileInstallationStore, LogLevel } from '@slack/bolt';
 import 'dotenv/config';
-import { App, LogLevel } from '@slack/bolt';
-import { registerListeners } from './listeners/index.js';
+import { Assistant } from '@slack/bolt';
+import { assistantThreadContextChanged } from './listeners/assistant/assistant-thread-context-changed.js';
+import { assistantThreadStarted } from './listeners/assistant/assistant-thread-started.js';
+import { userMessage } from './listeners/assistant/user-message.js';
 
-// Initialize the Bolt app
 const app = new App({
-  token: process.env.SLACK_BOT_TOKEN,
-  appToken: process.env.SLACK_APP_TOKEN,
-  socketMode: true,
   logLevel: LogLevel.DEBUG,
-  clientOptions: {
-    slackApiUrl: process.env.SLACK_API_URL || 'https://slack.com/api',
+  signingSecret: process.env.SLACK_SIGNING_SECRET,
+  clientId: process.env.SLACK_CLIENT_ID,
+  clientSecret: process.env.SLACK_CLIENT_SECRET,
+  stateSecret: process.env.SLACK_STATE_SECRET,
+  scopes: ['assistant:write', 'channels:history', 'chat:write', 'groups:history', 'im:history', 'mpim:history'],
+  installerOptions: {
+    userScopes: ['chat:write', 'canvases:write'],
   },
+  // FileInstallationStore is intended for development purposes only.
+  // For production, you should use a database to store installations.
+  installationStore: new FileInstallationStore({ baseDir: './installations' }),
 });
 
-// Register the action and event listeners
-registerListeners(app);
+// Initialize the Assistant
+const assistant = new Assistant({
+  threadStarted: assistantThreadStarted,
+  threadContextChanged: assistantThreadContextChanged,
+  userMessage: userMessage,
+});
 
-// Start the Bolt app
+app.assistant(assistant);
+
+/** Start Bolt App */
 (async () => {
   try {
-    await app.start();
-    app.logger.info('⚡️ Bolt app is running!');
+    await app.start(process.env.PORT || 3000);
+    app.logger.info('⚡️ Bolt app is running! ⚡️');
   } catch (error) {
-    app.logger.error('Failed to start the app', error);
+    app.logger.error('Unable to start App', error);
   }
 })();

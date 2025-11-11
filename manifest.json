@@ -1,49 +1,56 @@
 {
   "display_information": {
-    "name": "Bolt JS AI Agent"
+      "name": "Slack MCP Sample"
   },
   "features": {
-    "app_home": {
-      "home_tab_enabled": false,
-      "messages_tab_enabled": true,
-      "messages_tab_read_only_enabled": false
-    },
-    "bot_user": {
-      "display_name": "Bolt JS AI Agent",
-      "always_online": false
-    },
-    "assistant_view": {
-      "assistant_description": "An AI Agent built with Bolt for JavaScript, at your service!",
-      "suggested_prompts": []
-    }
+      "app_home": {
+          "home_tab_enabled": false,
+          "messages_tab_enabled": true,
+          "messages_tab_read_only_enabled": false
+      },
+      "bot_user": {
+          "display_name": "Slack MCP Sample",
+          "always_online": true
+      },
+      "assistant_view": {
+          "assistant_description": "Sample that demonstrates the use of Slack's MCP server",
+          "suggested_prompts": []
+      }
   },
   "oauth_config": {
-    "scopes": {
-      "bot": [
-        "app_mentions:read",
-        "assistant:write",
-        "channels:history",
-        "channels:join",
-        "chat:write",
-        "im:history",
-        "groups:history"
-      ]
-    }
+      "redirect_urls": [
+          "https://example.ngrok-free.app/slack/oauth_redirect"
+      ],
+      "scopes": {
+          "user": [
+              "chat:write",
+              "canvases:write"
+          ],
+          "bot": [
+              "assistant:write",
+              "channels:history",
+              "chat:write",
+              "groups:history",
+              "im:history",
+              "mpim:history"
+          ]
+      }
   },
   "settings": {
-    "event_subscriptions": {
-      "bot_events": [
-        "app_mention",
-        "assistant_thread_context_changed",
-        "assistant_thread_started",
-        "message.im"
-      ]
-    },
-    "interactivity": {
-      "is_enabled": false
-    },
-    "org_deploy_enabled": true,
-    "socket_mode_enabled": true,
-    "token_rotation_enabled": false
+      "event_subscriptions": {
+          "request_url": "https://example.ngrok-free.app/slack/events",
+          "bot_events": [
+              "assistant_thread_context_changed",
+              "assistant_thread_started",
+              "message.im"
+          ]
+      },
+      "interactivity": {
+          "is_enabled": true,
+          "request_url": "https://example.ngrok-free.app/slack/events"
+      },
+      "org_deploy_enabled": true,
+      "socket_mode_enabled": false,
+      "token_rotation_enabled": false
   }
 }
