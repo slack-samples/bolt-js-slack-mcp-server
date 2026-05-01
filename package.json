@@ -26,7 +26,7 @@
     "url": "https://github.com/slack-samples/bolt-js-slack-mcp-server/issues"
   },
   "dependencies": {
-    "@slack/bolt": "^4.5.0",
+    "@slack/bolt": "^4.7.2",
     "dotenv": "~17.4.0",
     "openai": "^6.33.0"
   },
