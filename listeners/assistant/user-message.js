@@ -103,7 +103,7 @@ export const userMessage = async ({ client, context, logger, message, say, setTi
     });
 
     // Prepare and tag each message for LLM processing
-    const threadHistory = thread.messages.map((m) => {
+    const threadHistory = (thread.messages ?? []).map((m) => {
       const role = m.bot_id ? 'Assistant' : 'User';
       return `${role}: ${m.text || ''}`;
     });
