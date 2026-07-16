@@ -17,7 +17,40 @@ Join the [Slack Developer Program](https://api.slack.com/developer-program) for 
 
 ## Installation
 
-### Create a Slack App
+### Using Slack CLI
+
+Install the latest version of the Slack CLI for your operating system:
+
+- [Slack CLI for macOS & Linux](https://docs.slack.dev/tools/slack-cli/guides/installing-the-slack-cli-for-mac-and-linux/)
+- [Slack CLI for Windows](https://docs.slack.dev/tools/slack-cli/guides/installing-the-slack-cli-for-windows/)
+
+You'll also need to log in if this is your first time using the Slack CLI.
+
+```sh
+slack login
+```
+
+#### Initializing the project
+
+```sh
+slack create bolt-js-slack-mcp-server --template slack-samples/bolt-js-slack-mcp-server
+cd bolt-js-slack-mcp-server
+```
+
+#### Running the app
+
+```sh
+slack run
+```
+
+This sample installs via an OAuth flow behind a public URL rather than Socket
+Mode, so you'll need the OAuth and event request URLs configured — see the
+[OAuth](#oauth) section for the full setup.
+
+<details>
+<summary><h3>Using Terminal</h3></summary>
+
+#### Create a Slack App
 
 1. Open [https://api.slack.com/apps/new](https://api.slack.com/apps/new) and
    choose "From an app manifest"
@@ -26,13 +59,13 @@ Join the [Slack Developer Program](https://api.slack.com/developer-program) for 
    says `*Paste your manifest code here*` (within the JSON tab) and click _Next_
 4. Review the configuration and click _Create_
 
-### Clone the project
+#### Clone the project
 ```zsh
 # Clone this project onto your machine
 git clone https://github.com/slack-samples/bolt-js-slack-mcp-server.git
 ```
 
-### Environment Variables
+#### Environment Variables
 
 Before you can run the app, you'll need to store some environment variables.
 
@@ -54,7 +87,7 @@ OPENAI_API_KEY=YOUR_OPEN_API_KEY
 ```
 
 
-### Local Project
+#### Local Project
 
 ```zsh
 # Change into the project directory
@@ -67,12 +100,14 @@ npm install
 npm start
 ```
 
-### Linting
+#### Linting
 
 ```zsh
 # Run lint for code formatting and linting
 npm run lint
 ```
+
+</details>
 
 ## OAuth
 
