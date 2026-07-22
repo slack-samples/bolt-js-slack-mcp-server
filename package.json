@@ -31,7 +31,7 @@
     "openai": "^6.45.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.5.2",
+    "@biomejs/biome": "2.5.5",
     "@types/node": "^24.13.2",
     "typescript": "^6.0.3"
   }
