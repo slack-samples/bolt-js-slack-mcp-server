@@ -158,7 +158,7 @@ https://3cb89939.ngrok.io/slack/install
 
 ## Usage
 
-After installing the app into a workspace using the OAuth installtion flow, create a new chat (via DM) with the chatbot.
+After installing the app into a workspace using the OAuth installation flow, create a new chat (via DM) with the chatbot.
 
 Upon creation of the new chat, the user is prompted with two static options that demonstrate either sending a message to #general, or creating a new canvas – both as and on behalf of the user.
 
