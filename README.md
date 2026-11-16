@@ -70,6 +70,7 @@ npx skills add slackapi/slack-skills-plugin -y -a opencode
 4. Review the configuration and click _Create_
 
 ### Clone the project
+
 ```zsh
 # Clone this project onto your machine
 git clone https://github.com/slack-samples/bolt-js-slack-mcp-server.git
@@ -156,7 +157,8 @@ https://3cb89939.ngrok.io/slack/install
 ```
 
 ## Usage
-After installing the app into a workspace using the OAuth installtion flow, create a new chat (via DM) with the chatbot. 
+
+After installing the app into a workspace using the OAuth installtion flow, create a new chat (via DM) with the chatbot.
 
 Upon creation of the new chat, the user is prompted with two static options that demonstrate either sending a message to #general, or creating a new canvas – both as and on behalf of the user.
 
